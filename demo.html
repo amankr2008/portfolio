@@ -1,0 +1,306 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Aman Portfolio</title>
+        <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">    <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="icon" href="aman.logo.jpg" type="image/png">
+        <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">    
+    </head>
+    <body>
+        <div class="stars"></div>
+        <div class="shooting-star"></div>
+        <div class="snitch"></div>
+    <!-- Full-Screen Intro Animation -->
+    <div id="introOverlay" class="intro-overlay">
+        <div class="animation-content">
+            <h1>WELCOME</h1>
+        <p>Welcome to My Portfolio! Get ready to explore my work and creativity.</p>
+        </div>
+    </div>
+
+         <nav>
+            <div class="logo">
+                <h1>AMAN</h1>
+            </div>
+            <ul>
+                <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
+                <li><a href="#skills"><i class="fas fa-cogs"></i> Skills</a></li>
+                <li><a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact Us</a></li>
+            </ul>
+            <div class="nav-rightt">
+                <!-- Theme toggle switch -->
+                <label id="themeToggle" class="switch">
+                    <span class="sun"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="#ffd43b"><circle r="5" cy="12" cx="12"></circle></g></svg></span>
+                    <span class="moon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="m223.5 32c-123.5 0-223.5 100.3-223.5 224s100 224 223.5 224c60.6 0 115.5-24.2 155.8-63.4"></path></svg></span>
+                    <input type="checkbox" class="input" id="themeSwitch">
+                    <span class="slider"></span>
+                </label>
+
+                <!-- Profile section -->
+                <div class="profile">
+                    <img src="aman.logo.jpg" alt="Profile" id="profileIcon"/>
+                    <div class="profile-menu" id="profileMenu">
+                        <img src="aman.logo.jpg" height="50px" alt="Profile Picture">
+                        <h2 style="font-family: 'Roboto Mono', monospace;">Aman kumar</h2>
+                        <div class="social-icons">
+                            <a href="https://www.linkedin.com/in/aman-kumar-330119383"title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://x.com/amanch2007"title="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="https://github.com/amankr2008/Aman-Portfolio"title="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="https://www.instagram.com/amanch2007?igsh=bGRzNnhvZXg3OTg5"title="Instagram"><i class="fab fa-instagram"></i></a>
+                        </div>
+                        <a href="amanjuly2009@gmail.com" style=" text-decoration: none;">
+                            <p>Contact via Gmail:</p>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hamburger menu -->
+                <div class="hamburger">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </div>
+            </div>
+        </nav>
+        <div class="menubar text-center">
+            <ul>
+                <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
+                <li><a href="#skills"><i class="fas fa-cogs"></i> Skills</a></li>
+                <li><a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact Us</a></li>
+            </ul>
+        </div>
+
+    <!-- Home Section -->
+    <section id="home" class="home_section">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-12 text-center mb-4">
+                    <h3 class="welcome_message">Welcome to My Profile</h3> 
+                </div>
+                <!-- Left Side Content -->
+                <div class="col-lg-6">             
+                    <!-- Main Introduction -->
+                    <h3 class="main_intro">Hello, I'm <span class="name">Aman</span></h3>
+                    <h3 class="main_intro">I am a<span id="slideshow"></span></h3>
+                    
+                    <!-- Short Description About You -->
+                    <p class="description">
+                        I’m a web developer who loves creating responsive , user-friendly websites .
+                    </p>
+                    
+                    <!-- Buttons (Hire Me and Get CV) -->
+                    <div class="d-flex mt-5 align-items-center">
+                        <a class="btn btn-primary mx-4 me-3" href="#contact">Hire Me</a>
+                        <a class="btn btn-secondary" href="https://drive.google.com/file/d/1g5GGsI6VjpHK13J9-ZzYuvFj-w7iyDDP/view?usp=drive_link">Get CV</a>
+                    </div>
+                </div>
+                
+                <!-- Right Side Image -->
+                <div class="col-lg-6 text-center">
+                    <img src="aman.logo.jpg" alt="Aman kumar" class="profile_photo" id="profileImage"/>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about_section">
+        <div class="container">
+            <div class="row">
+                <!-- Left Side Image -->
+                <div class="col-lg-6 text-center">
+                    <img src="aman.logo.jpg" alt="About Me" class="about_image" />
+                </div>
+                <!-- Right Side Text -->
+                <div class="col-lg-6">
+                    <h2 class="about_heading">Let’s Introduce Myself</h2>
+                    <p class="about_text">
+                        Hello 👋 <br> I'm a Diploma student and a passionate front-end developer. I love creating webpages using HTML5 , CSS , and JavaScript. I work with frameworks like Bootstrap and use SQL Server Management Studio (SSMS) for managing data effectively .
+                    </p>
+                    <p class="about_text">
+                        I love creating user-friendly , responsive websites that make a positive impact . I'm eager to dive into full stack web development and expand my horizons .
+                    </p>
+                    <a href="https://drive.google.com/file/d/1g5GGsI6VjpHK13J9-ZzYuvFj-w7iyDDP/view?usp=drive_link" class="btn btn-primary" download>Download CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills_section">
+        <div class="container">
+            <h2 class="skills_heading text-center">My Skills</h2>
+            <div class="row">
+                <!-- Tools Icons -->
+                <div class="col-md-4 col-sm-6 skill-icon html5">
+                    <i class="fab fa-html5"></i>
+                    <p>HTML5</p>
+                </div>
+                <div class="col-md-4 col-sm-6 skill-icon css3-alt">
+                    <i class="fab fa-css3-alt"></i>
+                    <p>CSS</p>
+                </div>
+                <div class="col-md-4 col-sm-6 skill-icon js">
+                    <i class="fab fa-js"></i>
+                    <p>JavaScript</p>
+                </div>
+                <div class="col-md-4 col-sm-6 skill-icon sql">
+                    <i class="fas fa-database"></i>
+                    <p>SQL</p>
+                </div>
+                <div class="col-md-4 col-sm-6 skill-icon react">
+                    <i class="fab fa-react"></i>
+                    <p>React</p>
+                </div>
+
+                <div class="col-md-4 col-sm-6 skill-icon bootstrap">
+                    <i class="fab fa-bootstrap"></i>
+                    <p>Bootstrap</p>
+                </div>
+                <div class="col-md-4 col-sm-6 skill-icon nodejs">
+                    <i class="fab fa-node-js"></i>
+                    <p>Node.js</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects_section">
+        <div class="container">
+            <h2 class="text-uppercase text-center">My Projects</h2>
+            <p class="text-center">Here are some of the projects I've worked on . Click on the images to learn more about each project .</p>
+            <div class="row">
+                <!-- Project 1 -->
+                <div class="col-md-6 mb-4 text-center">
+                    <div class="project-card">
+                        <a href="https://amankr2008.github.io/Aman-Portfolio/">
+                            <img src="aman.logo.jpg" height="180px" alt="Project" class="project-image" />
+                            <h3 class="project-title">My Portfolio</h3>
+                        </a>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="col-md-6 mb-4 text-center">
+                    <div class="project-card">
+                        <a href="https://amankr2008.github.io/Aman-Portfolio/">
+                            <img src="aman.logo.jpg" height="158px" alt="Project" class="project-image" />
+                            <h3 class="project-title">portfolio</h3>
+                        </a>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="col-md-6 mb-4 text-center">
+                    <div class="project-card">
+                        <a href="https://amankr2008.github.io/E-commerce/">
+                            <img src="aman.logo.jpg" height="185px" alt="Project" class="project-image" />
+                            <h3 class="project-title">portfolio</h3>
+                        </a>
+                    </div>
+                </div>
+                <!-- Project 4 -->
+                <div class="col-md-6 mb-4 text-center">
+                    <div class="project-card">
+                        <a href="https://amankr2008.github.io/amankr2007/">
+                            <img src="aman.logo.jpg" height="180px" width="328px" class="project-image" />
+                            <h3 class="project-title">portfolio</h3>
+                        </a>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact_section">
+        <div class="container">
+            <h2 class="text-uppercase text-center">Get in Touch</h2>
+            <p class="text-center">We would love to hear from you! Please fill out the form below, and we will get back to you as soon as possible .</p>
+            <div class="row">
+                <div class="col-lg-6 contact_image_section">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d315726.91146929386!2d77.36015884610776!3d23.259933684553725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962f39b1c4e4b2b%3A0x5045675218c0d10!2sBhopal%2C%20Madhya%20Pradesh%2C%20India!5e0!3m2!1sen!2sus!4v1634084165678!5m2!1sen!2sus" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <!-- Form Section -->
+                <div class="col-lg-6">
+                    <h2 class="text-uppercase">Contact Us</h2>
+                    <form id="contactForm" action="/" method="POST">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" class="form-control" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- FOOTER AREA -->
+        <footer class="footer_area">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="footer_top flex-column">
+                            <div class="footer_logo text-center">
+                                <a href="#">
+                                    <img src="aman.logo.jpg" alt="">
+                                </a>
+                                <h4>Follow Me</h4>
+                            </div>
+                            <div class="footer_social text-center">
+                                <a href="https://www.linkedin.com/in/aman-kumar-330119383"title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="https://x.com/amanch2007"title="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href=" https://amankr2008.github.io/Aman-Portfolio/" title="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="https://www.instagram.com/amanch2007?igsh=bGRzNnhvZXg3OTg5"  title="Instagram"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row footer_bottom justify-content-center">
+                    <p class="footer-text">
+                        &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | Designed by <a href="https://www.linkedin.com/in/aman-kumar-330119383" style=" background: -webkit-linear-gradient(90deg, #4458dc 0%, #854fee 100%);-webkit-background-clip: text;
+                        background-clip: text;
+                        -webkit-text-fill-color: transparent;" target="_blank">Aman</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+    <script src="app.js"></script>
+    </body>
+    </html>
+    </html>
