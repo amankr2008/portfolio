@@ -23,7 +23,29 @@ margin-bottom:10px;
 <body>
 
 <h1>Portfolio Messages</h1>
+<h2>Messages</h2>
 
+<div id="messages"></div>
+
+<script>
+
+fetch("/api/message")
+.then(res=>res.json())
+.then(data=>{
+
+let box=document.getElementById("messages");
+
+data.blobs.forEach(msg=>{
+
+box.innerHTML+=`
+<p>${msg.pathname}</p>
+`;
+
+});
+
+});
+
+</script>
 <div id="messages"></div>
 
 <script>

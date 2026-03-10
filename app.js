@@ -146,3 +146,16 @@ JSON.stringify(data)
 ).setMimeType(ContentService.MimeType.JSON);
 
 }
+async function sendMessage(data){
+
+await fetch("/api/message",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify(data)
+});
+
+alert("Message Sent");
+
+}
