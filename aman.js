@@ -22,7 +22,8 @@ app.get("/admin", (req, res) => {
 
 // Get messages API
 app.get("/messages", (req, res) => {
-
+import messageRoutes from './messages.js';
+app.use('/', messageRoutes);
     fs.readFile("output.txt", "utf8", (err, data) => {
 
         if (err) return res.json([]);

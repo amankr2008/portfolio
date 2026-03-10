@@ -1,32 +1,61 @@
-import { put, list } from "@vercel/blob";
+import { Blob } from '@vercel/blob';
+import express from 'express';
 
-export default async function handler(req, res) {
+const router = express.Router();
 
-if (req.method === "POST") {
+// Vercel Storage setup
+const blob = new Blob({ name: 'portfolio-blob' });
 
-const { name, email, subject, message } = req.body;
+// Save message
+router.post('/message', async (req, res) => {
+  const { name, email, subject, message } = req.body;
 
-const data = JSON.stringify({
-name,
-email,
-subject,
-message,
-date:new Date()
+  if (!name || !email || !message) return res.status(400).json({ error: 'Missing fields' });
+
+  const timestamp = new Date().toISOString();
+  const key = `messages/${timestamp}-${name}.json`;
+
+  try {
+    await blob.put(key, JSON.stringify({ name, email, subject, message, timestamp }));
+    res.json({ message: 'Message received' });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: 'Failed to save message' });
+  }
 });
 
-const filename = `message-${Date.now()}.json`;
+// Admin panel to view messages
+router.get('/admin/messages', async (req, res) => {
+  try {
+    const keys = await blob.list('messages/');
+    const allMessages = [];
 
-await put(filename, data, { access: "public" });
+    for (let key of keys) {
+      const data = await blob.get(key);
+      allMessages.push(JSON.parse(data.toString()));
+    }
 
-res.status(200).json({message:"saved"});
-}
+    // Simple HTML table view
+    let html = `<h1>Admin Messages</h1><table border="1" style="border-collapse:collapse;">
+      <tr><th>Name</th><th>Email</th><th>Subject</th><th>Message</th><th>Time</th></tr>`;
 
-if (req.method === "GET") {
+    allMessages.forEach(msg => {
+      html += `<tr>
+        <td>${msg.name}</td>
+        <td>${msg.email}</td>
+        <td>${msg.subject || '-'}</td>
+        <td>${msg.message}</td>
+        <td>${msg.timestamp}</td>
+      </tr>`;
+    });
 
-const blobs = await list();
+    html += `</table>`;
+    res.send(html);
 
-res.status(200).json(blobs);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send('Failed to fetch messages');
+  }
+});
 
-}
-
-}
+export default router;
