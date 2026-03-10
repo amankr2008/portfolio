@@ -114,30 +114,35 @@ document.addEventListener('DOMContentLoaded', () => {
         starsContainer.appendChild(star);
     }
 });
-const form = document.querySelector("form");
+function doPost(e) {
 
-form.addEventListener("submit", async (e) => {
+var sheet = SpreadsheetApp.getActiveSheet();
+var data = JSON.parse(e.postData.contents);
 
-e.preventDefault();
+sheet.appendRow([
+data.name,
+data.email,
+data.subject,
+data.message,
+new Date()
+]);
 
-const data = {
-name: form.name.value,
-email: form.email.value,
-subject: form.subject.value,
-message: form.message.value
-};
+return ContentService.createTextOutput(
+JSON.stringify({message:"Message received"})
+).setMimeType(ContentService.MimeType.JSON);
 
-await fetch("YOUR_SCRIPT_URL", {
-method: "POST",
-body: JSON.stringify(data)
-});
+}
 
-alert("Message Sent!");
 
-form.reset();
+function doGet() {
 
-});
-await fetch("https://script.google.com/macros/s/AKfycbxew5Aku_dk09XJ3mU1m7Uxic7r0G-wBZkM0fbRrLUPtvdrW-pPKpZQbuI-vjG8T3v9/exec", {
-method: "POST",
-body: JSON.stringify(data)
-});
+var sheet = SpreadsheetApp.getActiveSheet();
+var data = sheet.getDataRange().getValues();
+
+data.shift();
+
+return ContentService.createTextOutput(
+JSON.stringify(data)
+).setMimeType(ContentService.MimeType.JSON);
+
+}

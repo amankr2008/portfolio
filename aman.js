@@ -14,7 +14,27 @@ app.use(express.static("static"));
 
 /* ===== Home Page ===== */
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "views", "index.html"));
+    res.sendFile(path.join(__dirname, "views", "demo.html"));
+    // Admin page
+app.get("/admin", (req, res) => {
+    res.sendFile(path.join(__dirname, "views", "admin.html"));
+});
+
+// Get messages API
+app.get("/messages", (req, res) => {
+
+    fs.readFile("output.txt", "utf8", (err, data) => {
+
+        if (err) return res.json([]);
+
+        const messages = data.split("--------------------------")
+        .filter(m => m.trim() !== "");
+
+        res.json(messages);
+
+    });
+
+});
 });
 
 /* ===== Form Submit Route ===== */

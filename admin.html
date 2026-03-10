@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Panel</title>
+
+<style>
+body{
+font-family:Arial;
+background:#111;
+color:white;
+padding:20px;
+}
+
+.box{
+background:#222;
+padding:15px;
+margin-bottom:10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>Portfolio Messages</h1>
+
+<div id="messages"></div>
+
+<script>
+
+fetch("/messages")
+.then(res=>res.json())
+.then(data=>{
+
+let container=document.getElementById("messages");
+
+data.forEach(msg=>{
+
+let div=document.createElement("div");
+div.className="box";
+div.innerText=msg;
+
+container.appendChild(div);
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
