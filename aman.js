@@ -14,7 +14,7 @@ app.use(express.static("static"));
 
 /* ===== Home Page ===== */
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "views", "demo.html"));
+    res.sendFile(path.join(__dirname, "views", "index.html"));
     // Admin page
 app.get("/admin", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "admin.html"));
