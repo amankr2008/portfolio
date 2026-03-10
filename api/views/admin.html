@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Panel</title>
+<style>
+    body { font-family: Arial; padding: 20px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 10px; border: 1px solid #ccc; text-align: left; }
+</style>
+</head>
+<body>
+<h1>Admin Panel - Messages</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Subject</th>
+            <th>Message</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody id="messagesBody">
+        <!-- Messages will load here -->
+    </tbody>
+</table>
+
+<script>
+async function loadMessages() {
+    const res = await fetch("/api/messages");
+    const messages = await res.json();
+    const tbody = document.getElementById("messagesBody");
+    tbody.innerHTML = "";
+
+    messages.forEach(msg => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${msg.name}</td>
+            <td>${msg.email}</td>
+            <td>${msg.subject}</td>
+            <td>${msg.message}</td>
+            <td>${new Date(msg.date).toLocaleString()}</td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+// Load messages every 5 seconds
+loadMessages();
+setInterval(loadMessages, 5000);
+</script>
+</body>
+</html>

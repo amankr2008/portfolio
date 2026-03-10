@@ -19,7 +19,30 @@ app.get("/", (req, res) => {
 app.get("/admin", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "admin.html"));
 });
+// Submit form via fetch
+const contactForm = document.querySelector("form");
 
+contactForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = {
+        name: contactForm.name.value,
+        email: contactForm.email.value,
+        subject: contactForm.subject.value,
+        message: contactForm.message.value
+    };
+
+    // Send message to admin panel
+    const response = await fetch("/api/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+    });
+
+    const result = await response.json();
+    alert(result.message); // "Message saved"
+    contactForm.reset();
+});
 // Get messages API
 app.get("/messages", (req, res) => {
 import messageRoutes from './messages.js';
