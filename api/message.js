@@ -1,61 +1,79 @@
-import { Blob } from '@vercel/blob';
-import express from 'express';
-
+\// messages.js
+const express = require("express");
 const router = express.Router();
+const fs = require("fs");
+const path = require("path");
+const nodemailer = require("nodemailer");
 
-// Vercel Storage setup
-const blob = new Blob({ name: 'portfolio-blob' });
+// File path to store messages (for backup)
+const messagesFile = path.join(__dirname, "messages.json");
 
-// Save message
-router.post('/message', async (req, res) => {
-  const { name, email, subject, message } = req.body;
+// Function to save message
+function saveMessage(data) {
+    let messages = [];
+    if (fs.existsSync(messagesFile)) {
+        messages = JSON.parse(fs.readFileSync(messagesFile));
+    }
+    messages.push({ ...data, time: new Date().toISOString() });
+    fs.writeFileSync(messagesFile, JSON.stringify(messages, null, 2));
+}
 
-  if (!name || !email || !message) return res.status(400).json({ error: 'Missing fields' });
-
-  const timestamp = new Date().toISOString();
-  const key = `messages/${timestamp}-${name}.json`;
-
-  try {
-    await blob.put(key, JSON.stringify({ name, email, subject, message, timestamp }));
-    res.json({ message: 'Message received' });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ error: 'Failed to save message' });
-  }
+// Setup your Gmail (or any SMTP) credentials
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: "amankr2008", // <-- change to your email
+        pass: "amankr2008@12", // <-- change to your Gmail App Password
+    },
 });
 
-// Admin panel to view messages
-router.get('/admin/messages', async (req, res) => {
-  try {
-    const keys = await blob.list('messages/');
-    const allMessages = [];
+// POST route to receive message
+router.post("/send", (req, res) => {
+    const { name, email, subject, message } = req.body;
 
-    for (let key of keys) {
-      const data = await blob.get(key);
-      allMessages.push(JSON.parse(data.toString()));
+    if (!name || !email || !message) {
+        return res.status(400).json({ error: "All fields required" });
     }
 
-    // Simple HTML table view
-    let html = `<h1>Admin Messages</h1><table border="1" style="border-collapse:collapse;">
-      <tr><th>Name</th><th>Email</th><th>Subject</th><th>Message</th><th>Time</th></tr>`;
+    // Save to file
+    saveMessage({ name, email, subject, message });
 
-    allMessages.forEach(msg => {
-      html += `<tr>
-        <td>${msg.name}</td>
-        <td>${msg.email}</td>
-        <td>${msg.subject || '-'}</td>
-        <td>${msg.message}</td>
-        <td>${msg.timestamp}</td>
-      </tr>`;
+    // Send email notification
+    const mailOptions = {
+        from: "amanjuly2009@gmail.com",
+        to: "amanchu2323@gmail.com", // <-- you will receive the message here
+        subject: `Message Received Successfully: ${subject || "No Subject"}`,
+        text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
+    };
+
+    transporter.sendMail(mailOptions, (err, info) => {
+        if (err) console.log("Email Error:", err);
+        else console.log("Email sent:", info.response);
     });
 
-    html += `</table>`;
-    res.send(html);
-
-  } catch (err) {
-    console.log(err);
-    res.status(500).send('Failed to fetch messages');
-  }
+    res.json({ message: "Message received" });
 });
 
-export default router;
+// GET route to show all messages in admin panel
+router.get("/admin/messages", (req, res) => {
+    let messages = [];
+    if (fs.existsSync(messagesFile)) {
+        messages = JSON.parse(fs.readFileSync(messagesFile));
+    }
+
+    // Simple HTML admin panel
+    let html = `<h1>Admin Panel - Messages</h1><table border="1" cellpadding="5"><tr><th>Name</th><th>Email</th><th>Subject</th><th>Message</th><th>Time</th></tr>`;
+    messages.reverse().forEach(m => {
+        html += `<tr>
+        <td>${m.name}</td>
+        <td>${m.email}</td>
+        <td>${m.subject || ""}</td>
+        <td>${m.message}</td>
+        <td>${m.time}</td>
+        </tr>`;
+    });
+    html += "</table>";
+    res.send(html);
+});
+
+module.exports = router;
