@@ -137,3 +137,7 @@ alert("Message Sent!");
 form.reset();
 
 });
+await fetch("https://script.google.com/macros/s/AKfycbxew5Aku_dk09XJ3mU1m7Uxic7r0G-wBZkM0fbRrLUPtvdrW-pPKpZQbuI-vjG8T3v9/exec", {
+method: "POST",
+body: JSON.stringify(data)
+});
