@@ -114,4 +114,26 @@ document.addEventListener('DOMContentLoaded', () => {
         starsContainer.appendChild(star);
     }
 });
+const form = document.querySelector("form");
 
+form.addEventListener("submit", async (e) => {
+
+e.preventDefault();
+
+const data = {
+name: form.name.value,
+email: form.email.value,
+subject: form.subject.value,
+message: form.message.value
+};
+
+await fetch("YOUR_SCRIPT_URL", {
+method: "POST",
+body: JSON.stringify(data)
+});
+
+alert("Message Sent!");
+
+form.reset();
+
+});
