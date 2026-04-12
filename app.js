@@ -159,3 +159,34 @@ body:JSON.stringify(data)
 alert("Message Sent");
 
 }
+
+const chatbotBtn = document.getElementById("chatbotBtn");
+const chatbotBox = document.getElementById("chatbotBox");
+const chatBody = document.getElementById("chatBody");
+const userInput = document.getElementById("userInput");
+
+// Open/Close chatbot
+chatbotBtn.onclick = () => {
+    chatbotBox.style.display =
+        chatbotBox.style.display === "block" ? "none" : "block";
+};
+
+// Handle user message
+userInput.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+        let userText = userInput.value;
+
+        if (userText.trim() === "") return;
+
+        // User message
+        let userMsg = `<p style="text-align:right;">${userText}</p>`;
+        chatBody.innerHTML += userMsg;
+
+        // Bot reply
+        let botReply = `<p class="bot-msg">Thanks for your message! I will respond soon 😊</p>`;
+        chatBody.innerHTML += botReply;
+
+        userInput.value = "";
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+});
